@@ -34,7 +34,8 @@ public class JColorLoaderMonoChrome extends JComponent implements Serializable {
     Color[] colors;
     private int n;
 
-    public void setColors(Color[] colors) {
+    public void setColors(Color[] colors) throws Exception {
+        if(colors.length != n) throw new Exception("no of colors specified is not equal to the no of colors provided");
         this.colors = colors;
     }
 
@@ -121,17 +122,17 @@ public class JColorLoaderMonoChrome extends JComponent implements Serializable {
         }
         repaint();
     }
-    void animate() {
+    void animate(final int speed) {
         new Timer(10, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateRect(12);
+                updateRect(speed);
             }
         }).start();
     }
 
-    public static void main(String[] argv) throws InterruptedException {
+    public static void main(String[] argv) throws InterruptedException, Exception {
         JFrame jf = new JFrame();
         final JColorLoaderMonoChrome jcs = new JColorLoaderMonoChrome(4);
         jf.setSize(1366, 10);
@@ -139,7 +140,7 @@ public class JColorLoaderMonoChrome extends JComponent implements Serializable {
         jcs.setVisible(true);
         jf.setContentPane(jcs);
         jcs.setColors(new Color[]{Color.BLACK, Color.RED, Color.BLUE, Color.GREEN});
-        jcs.animate();
+        jcs.animate(12);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
     }

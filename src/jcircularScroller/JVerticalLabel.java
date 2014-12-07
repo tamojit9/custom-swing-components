@@ -14,7 +14,6 @@ import java.awt.LinearGradientPaint;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -22,12 +21,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.beans.*;
 import java.io.Serializable;
-import java.sql.Time;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -137,7 +133,7 @@ public class JVerticalLabel extends JComponent implements Serializable {
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setPaint(getHorizontalGlowingShade(new Rectangle(0, 0, getWidth(), getHeight()), getBackground()));
+        //g2d.setPaint(getHorizontalGlowingShade(new Rectangle(0, 0, getWidth(), getHeight()), getBackground()));
         setHints(g2d);
         paintActualComponent(g2d);
     }

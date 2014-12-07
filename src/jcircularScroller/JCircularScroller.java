@@ -225,6 +225,8 @@ public class JCircularScroller extends JComponent implements Serializable {
     }
     
     void drawIndicator(Graphics2D g2d, int cx, int cy, int radius) {
+        alpha  =Math.max(0, alpha);
+        alpha = Math.min(1, alpha);
         g2d.setComposite(AlphaComposite.SrcOver.derive((float)alpha));
         Color c = g2d.getColor();
         if(entered) {
