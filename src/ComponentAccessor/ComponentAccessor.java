@@ -16,8 +16,9 @@ import aurelienribon.tweenengine.TweenAccessor;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
+import jcircularScroller.JDottedLine;
 
-public class ComponentAccessor implements TweenAccessor<Component> {
+public class ComponentAccessor implements TweenAccessor<JDottedLine> {
        public static final int POS_XY = 1;
 	public static final int CPOS_XY = 2;
 	public static final int SCALE_XY = 3;
@@ -25,10 +26,10 @@ public class ComponentAccessor implements TweenAccessor<Component> {
 	public static final int TINT = 6;
         public static final int SCALE_CXY = 7;
         public static final int EXT_XR = 8, EXT_XL = 9;
-        public static final int EXT_YU = 10, EXT_YD = 11;
+        public static final int EXT_YU = 10, EXT_YD = 11, PROGRESS = 12;
         
 	@Override
-	public int getValues(Component target, int tweenType, float[] returnValues) {
+	public int getValues(JDottedLine target, int tweenType, float[] returnValues) {
 		switch (tweenType) {
 			case POS_XY:
 				returnValues[0] = target.getX();
@@ -75,7 +76,8 @@ public class ComponentAccessor implements TweenAccessor<Component> {
                         case EXT_YD :
                             returnValues[0] = target.getHeight();
                             return 1;
-                            
+                        case PROGRESS :
+                            returnValues[0] = (float) target.getProgress();
 			default: 
                             assert false; 
                             return -1;
@@ -83,7 +85,7 @@ public class ComponentAccessor implements TweenAccessor<Component> {
 	}
         int cx = -1, cy = -1;
 	@Override
-	public void setValues(Component target, int tweenType, float[] newValues) {
+	public void setValues(JDottedLine target, int tweenType, float[] newValues) {
 		switch (tweenType) {
 			case POS_XY: 
                             target.setLocation((int)newValues[0], (int)newValues[1]);
@@ -129,6 +131,8 @@ public class ComponentAccessor implements TweenAccessor<Component> {
                             target.setSize(target.getWidth(), (int) newValues[0]);
                              target.setLocation(dx-target.getWidth(), dy-target.getHeight());
                             break;
+                        case PROGRESS :
+                            target.setProgress(newValues[0]);
                         default: 
                             assert false;
 		}

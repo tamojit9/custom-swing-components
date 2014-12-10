@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,7 +20,6 @@ import java.io.Serializable;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
-import static jcircularScroller.JVerticalLabel.createJFrame;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
